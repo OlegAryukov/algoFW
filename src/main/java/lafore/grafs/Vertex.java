@@ -1,8 +1,8 @@
 package lafore.grafs;
 
 public class Vertex<T> {
-    public String label;
-    public boolean wasVisited;
+    private String label;
+    private boolean wasVisited;
     private T data;
 
     public Vertex(String label) {
