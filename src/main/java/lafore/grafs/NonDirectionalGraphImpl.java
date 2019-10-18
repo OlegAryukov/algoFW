@@ -38,24 +38,24 @@ public class NonDirectionalGraphImpl<T, D> implements Graph<T, D> {
 
         LinkedList<D> adjacentListStart = adjacentVertexMap.get(start.getLabel());
         if (adjacentListStart != null) {
-            if (!adjacentListStart.isEmpty()) {
-                adjacentListStart.add(end.getLabel());
-            } else {
-                adjacentListStart = new LinkedList<D>();
-                adjacentListStart.add(end.getLabel());
-                adjacentVertexMap.put(start.getLabel(), adjacentListStart);
-            }
+
+            adjacentListStart.add(end.getLabel());
+        } else {
+            adjacentListStart = new LinkedList<D>();
+            adjacentListStart.add(end.getLabel());
+            adjacentVertexMap.put(start.getLabel(), adjacentListStart);
+
         }
         LinkedList<D> adjacentListEnd = adjacentVertexMap.get(end.getLabel());
         if (adjacentListEnd != null) {
-            if (!adjacentListEnd.isEmpty()) {
-                adjacentListEnd.add(start.getLabel());
-            } else {
-                adjacentListEnd = new LinkedList<D>();
-                adjacentListEnd.add(start.getLabel());
-                adjacentVertexMap.put(end.getLabel(),adjacentListEnd);
-            }
+
+            adjacentListEnd.add(start.getLabel());
+        } else {
+            adjacentListEnd = new LinkedList<D>();
+            adjacentListEnd.add(start.getLabel());
+            adjacentVertexMap.put(end.getLabel(), adjacentListEnd);
         }
+
     }
 
 
@@ -67,7 +67,7 @@ public class NonDirectionalGraphImpl<T, D> implements Graph<T, D> {
         return null;
     }
 
-    private void dfsEntry(D startLable) {
+    public void dfsEntry(D startLable) {
         vertexesMap.get(startLable).setWasVisited(true);
         for (D lable : adjacentVertexMap.get(startLable)) {
             if (!vertexesMap.get(lable).isWasVisited()) dfsEntry(lable);
