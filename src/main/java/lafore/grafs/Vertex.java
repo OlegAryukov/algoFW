@@ -1,20 +1,20 @@
 package lafore.grafs;
 
-public class Vertex<T> {
-    private String label;
+public class Vertex<T, D> {
+    private D label;
     private boolean wasVisited;
     private T data;
 
-    public Vertex(String label) {
+    public Vertex(D label) {
         this.label = label;
         this.wasVisited = false;
     }
 
-    public String getLabel() {
+    public D getLabel() {
         return label;
     }
 
-    public void setLabel(String label) {
+    public void setLabel(D label) {
         this.label = label;
     }
 

@@ -9,26 +9,25 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class NonDirectionalGraphImpl<T> implements Graph<T> {
+public class NonDirectionalGraphImpl<T, D> implements Graph<T, D> {
 
-    private Map<String, LinkedList<String>> adjacentVertexMap;
-    private Map<String, Vertex<T>> vertexesMap;
-    private boolean marked[] = null;
+    private Map<D, LinkedList<D>> adjacentVertexMap;
+    private Map<D, Vertex<T, D>> vertexesMap;
 
     public NonDirectionalGraphImpl() {
-        adjacentVertexMap = new HashMap<String, LinkedList<String>>();
+        adjacentVertexMap = new HashMap<D, LinkedList<D>>();
         vertexesMap = new HashMap<>();
     }
 
     @Override
-    public void addVertex(Vertex<T> vertex) {
-        if(adjacentVertexMap.get(vertex.getLabel())==null){
+    public void addVertex(Vertex<T, D> vertex) {
+        if (adjacentVertexMap.get(vertex.getLabel()) == null) {
             vertexesMap.put(vertex.getLabel(), vertex);
         }
     }
 
     @Override
-    public void addEdge(Vertex<T> start, Vertex<T> end) {
+    public void addEdge(Vertex<T, D> start, Vertex<T, D> end) {
         if (!vertexesMap.containsKey(start.getLabel())) {
             vertexesMap.put(start.getLabel(), start);
         }
@@ -37,38 +36,41 @@ public class NonDirectionalGraphImpl<T> implements Graph<T> {
             vertexesMap.put(end.getLabel(), end);
         }
 
-        LinkedList<String> adjacentListStart = adjacentVertexMap.get(start.getLabel());
+        LinkedList<D> adjacentListStart = adjacentVertexMap.get(start.getLabel());
         if (adjacentListStart != null) {
-            if(!adjacentListStart.isEmpty()){
+            if (!adjacentListStart.isEmpty()) {
                 adjacentListStart.add(end.getLabel());
             } else {
-                adjacentListStart = new LinkedList<>();
+                adjacentListStart = new LinkedList<D>();
                 adjacentListStart.add(end.getLabel());
+                adjacentVertexMap.put(start.getLabel(), adjacentListStart);
             }
         }
-        LinkedList<String> adjacentListEnd = adjacentVertexMap.get(end.getLabel());
+        LinkedList<D> adjacentListEnd = adjacentVertexMap.get(end.getLabel());
         if (adjacentListEnd != null) {
-            if(!adjacentListEnd.isEmpty()){
+            if (!adjacentListEnd.isEmpty()) {
                 adjacentListEnd.add(start.getLabel());
             } else {
-                adjacentListEnd = new LinkedList<>();
+                adjacentListEnd = new LinkedList<D>();
                 adjacentListEnd.add(start.getLabel());
+                adjacentVertexMap.put(end.getLabel(),adjacentListEnd);
             }
         }
     }
 
+
     @Override
-    public List<Edge<T>> getPath(Vertex<T> start, Vertex<T> end) {
+    public List<Edge<T, D>> getPath(Vertex<T, D> start, Vertex<T, D> end) {
         boolean[] isVisited = new boolean[vertexesMap.size()];
         ArrayList<String> pathsList = new ArrayList<>();
 
         return null;
     }
 
-    private void dfsEntry(String startLable){
+    private void dfsEntry(D startLable) {
         vertexesMap.get(startLable).setWasVisited(true);
-        for (String lable: adjacentVertexMap.get(startLable)){
-            if(!vertexesMap.get(lable).isWasVisited()) dfsEntry(lable);
+        for (D lable : adjacentVertexMap.get(startLable)) {
+            if (!vertexesMap.get(lable).isWasVisited()) dfsEntry(lable);
         }
     }
 }
