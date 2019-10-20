@@ -9,5 +9,5 @@ public interface Graph<T, D> {
 
     void addEdge(Vertex<T, D> start, Vertex<T, D> end);
 
-    List<Edge<T,D>> getPath(Vertex<T, D> start, Vertex<T, D> end);
+    List<Edge<T,D>> getPathTo(Vertex<T, D> start, Vertex<T, D> end);
 }

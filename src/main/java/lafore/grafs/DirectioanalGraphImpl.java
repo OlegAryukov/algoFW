@@ -8,18 +8,17 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class NonDirectionalGraphImpl<T, D> implements Graph<T, D> {
+public class DirectioanalGraphImpl<T, D> implements Graph<T, D> {
 
     private Map<D, LinkedList<D>> adjacentVertexMap;
     private Map<D, Vertex<T, D>> vertexesMap;
     private Map<D, Edge<T, D>> edgeToMap;
 
-    public NonDirectionalGraphImpl() {
+    public DirectioanalGraphImpl() {
         adjacentVertexMap = new HashMap<>();
         vertexesMap = new HashMap<>();
         edgeToMap = new HashMap<>();
     }
-
     @Override
     public void addVertex(Vertex<T, D> vertex) {
         if (adjacentVertexMap.get(vertex.getLabel()) == null) {
@@ -46,18 +45,16 @@ public class NonDirectionalGraphImpl<T, D> implements Graph<T, D> {
             adjacentVertexMap.put(start.getLabel(), adjacentListStart);
 
         }
-        LinkedList<D> adjacentListEnd = adjacentVertexMap.get(end.getLabel());
-        if (adjacentListEnd != null) {
-
-            adjacentListEnd.add(start.getLabel());
-        } else {
-            adjacentListEnd = new LinkedList<>();
-            adjacentListEnd.add(start.getLabel());
-            adjacentVertexMap.put(end.getLabel(), adjacentListEnd);
-        }
-
+//        LinkedList<D> adjacentListEnd = adjacentVertexMap.get(end.getLabel());
+//        if (adjacentListEnd != null) {
+//
+//            adjacentListEnd.add(start.getLabel());
+//        } else {
+//            adjacentListEnd = new LinkedList<>();
+//            adjacentListEnd.add(start.getLabel());
+//            adjacentVertexMap.put(end.getLabel(), adjacentListEnd);
+//        }
     }
-
 
     @Override
     public List<Edge<T, D>> getPathTo(Vertex<T, D> start, Vertex<T, D> end) {
