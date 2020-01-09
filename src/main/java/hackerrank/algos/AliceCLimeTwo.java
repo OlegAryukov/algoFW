@@ -1,35 +1,23 @@
 package hackerrank.algos;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayDeque;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Queue;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 
-//Not worked correctly :(
-public class AliceClime {
-    // Complete the climbingLeaderboard function below.
+public class AliceCLimeTwo {
     static int[] climbingLeaderboard(int[] scores, int[] alice) {
-        int[] res = new int[alice.length];
-        int[] array = IntStream.of(scores).distinct().toArray();
-
-        int i = array.length - 1;
-        for (int j = 0; j < alice.length; j++) {
-            while(i>=0) {
-                if(alice[j]>=array[i]) i--;
-                else {res[j] = i+2; break;}
-            }
-            if(i<0) res[j]=1;
+    int[] array = IntStream.of(scores).distinct().toArray();
+    int i = array.length-1;
+    for(int score: alice) {
+        while(i>=0) {
+            if(score>=array[i]) i--;
+            else {System.out.println(i+2); break;}
         }
-
-        return res;
+        if(i<0) System.out.println(1);
     }
-
+    return null;
+    }
 
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -63,6 +51,18 @@ public class AliceClime {
         }
 
         int[] result = climbingLeaderboard(scores, alice);
+
+//        for (int i = 0; i < result.length; i++) {
+//            bufferedWriter.write(String.valueOf(result[i]));
+//
+//            if (i != result.length - 1) {
+//                bufferedWriter.write("\n");
+//            }
+//        }
+//
+//        bufferedWriter.newLine();
+//
+//        bufferedWriter.close();
 
         scanner.close();
     }

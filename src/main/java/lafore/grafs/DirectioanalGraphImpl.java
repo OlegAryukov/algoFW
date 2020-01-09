@@ -45,15 +45,6 @@ public class DirectioanalGraphImpl<T, D> implements Graph<T, D> {
             adjacentVertexMap.put(start.getLabel(), adjacentListStart);
 
         }
-//        LinkedList<D> adjacentListEnd = adjacentVertexMap.get(end.getLabel());
-//        if (adjacentListEnd != null) {
-//
-//            adjacentListEnd.add(start.getLabel());
-//        } else {
-//            adjacentListEnd = new LinkedList<>();
-//            adjacentListEnd.add(start.getLabel());
-//            adjacentVertexMap.put(end.getLabel(), adjacentListEnd);
-//        }
     }
 
     @Override
@@ -68,7 +59,7 @@ public class DirectioanalGraphImpl<T, D> implements Graph<T, D> {
         return pathTo;
     }
 
-    public void dfsEntry(D startLabel) {
+    private void dfsEntry(D startLabel) {
         vertexesMap.get(startLabel).setWasVisited(true);
         for (D label : adjacentVertexMap.get(startLabel)) {
             if (!vertexesMap.get(label).isWasVisited()) {
