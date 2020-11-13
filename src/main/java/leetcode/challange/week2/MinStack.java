@@ -2,7 +2,6 @@ package leetcode.challange.week2;
 
 import java.util.Arrays;
 
-import com.sun.deploy.util.ArrayUtil;
 
 public class MinStack {
     private int[] store = new int[100];
