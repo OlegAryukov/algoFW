@@ -1,11 +1,5 @@
 package educativity.algojava.search.excersise.dynamic;
 
-import com.sun.xml.internal.ws.util.StringUtils;
-import sun.security.util.ArrayUtil;
-
-import java.lang.reflect.Array;
-import java.util.Arrays;
-
 public class LongestPalindromSubstring {
     public static int LPSLength(String st) {
         int size = st.length();
